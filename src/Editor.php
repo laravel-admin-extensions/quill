@@ -16,10 +16,15 @@ class Editor extends Field
     protected $view = 'laravel-admin-quill::editor';
 
     protected static $css = [
+        'vendor/laravel-admin-ext/quill/monokai-sublime.min.css',
+        'vendor/laravel-admin-ext/quill/katex.min.css',
+        'vendor/laravel-admin-ext/quill/quill.bubble.css',
         'vendor/laravel-admin-ext/quill/quill.snow.css',
     ];
 
     protected static $js = [
+        'vendor/laravel-admin-ext/quill/highlight.min.js',
+        'vendor/laravel-admin-ext/quill/katex.min.js',
         'vendor/laravel-admin-ext/quill/quill.min.js',
     ];
 
@@ -30,8 +35,6 @@ class Editor extends Field
         $height = isset($options['height']) ? $options['height'] : '300px';
         $this->addVariables(['height' => $height]);
         unset($options['height']);
-        // set theme
-        $options['theme'] = 'snow';
         $options = json_encode($options);
         $this->script = <<<EOT
 var options = {$options}

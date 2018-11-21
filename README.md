@@ -52,6 +52,7 @@ In the `extensions` section of the `config/admin.php` file, add some configurati
                         'clean'
                     ],
             ],
+            'theme' => 'snow',
             'height' => '200px',
         ]
     ]

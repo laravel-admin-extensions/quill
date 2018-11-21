@@ -61,6 +61,8 @@ In the `extensions` section of the `config/admin.php` file, add some configurati
 
 The configuration of the editor can be found in [Quill Documentation](https://quilljs.com/docs/quickstart/).
 
+* [How to insert images by uploading to the server instead of Base64 encoding the images?](https://github.com/quilljs/quill/issues/1089)
+
 ## Usage
 
 Use it in the form form:

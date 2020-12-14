@@ -37,13 +37,13 @@ class Editor extends Field
         unset($options['height']);
         $options = json_encode($options);
         $this->script = <<<EOT
-var options = {$options}
+var options = {$options};
 var quill = new Quill("#{$this->id}", options);
 
 $('button[type="submit"]').click(function() {
 var content = document.querySelector('#{$this->id}').children[0].innerHTML
 $('input[name={$this->id}]').val(content)
-})
+});
 EOT;
         return parent::render();
     }

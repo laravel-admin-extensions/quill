@@ -26,6 +26,7 @@ class Editor extends Field
         'vendor/laravel-admin-ext/quill/highlight.min.js',
         'vendor/laravel-admin-ext/quill/katex.min.js',
         'vendor/laravel-admin-ext/quill/quill.min.js',
+        'vendor/laravel-admin-ext/quill/quill.htmlEditButton.min.js',
     ];
 
     public function render()
@@ -36,7 +37,11 @@ class Editor extends Field
         $this->addVariables(['height' => $height]);
         unset($options['height']);
         $options = json_encode($options);
+
         $this->script = <<<EOT
+        
+Quill.register("modules/htmlEditButton", htmlEditButton);
+
 var options = {$options};
 var quill = new Quill("#{$this->id}", options);
 

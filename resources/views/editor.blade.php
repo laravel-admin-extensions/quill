@@ -6,7 +6,7 @@
 
         @include('admin::form.error')
 
-        <div id="{{$id}}" class="quill-{{$id}}" style="height: {{$height}}">
+        <div id="{{$id}}" class="quill-{{$id}}" style="height: {{$height}}" data-initialed="false">
             <p>{!! old($column, $value) !!}</p>
         </div>
 

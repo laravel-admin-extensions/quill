@@ -42,10 +42,9 @@ class Editor extends Field
 Quill.register("modules/htmlEditButton", htmlEditButton);
 
 // init last editor for adding
-var options = {$options},  
-    editorClass = 'quill-{$this->id}'; 
+var options = {$options};
 
-$('.' + editorClass).each(function(index, item) {
+$('.quill-{$this->id}').each(function(index, item) {
     if( false === $(this).data('initialed') ) { // prevent initialed twice
         new Quill(item, options);
         $(this).data('initialed', true); // mark the editor as initialed
@@ -54,8 +53,7 @@ $('.' + editorClass).each(function(index, item) {
 });
 
 $('button[type="submit"]').click(function() {
-    var editorConent = '';
-    $('.' + editorClass).each(function(index, item) {
+    $('.quill-{$this->id}').each(function(index, item) {
         editorConent = item.children[0].innerHTML;
         $(this).siblings('input[type="hidden"]').val(editorConent);
     });

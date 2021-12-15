@@ -39,35 +39,24 @@ class Editor extends Field
         $options = json_encode($options);
 
         $this->script = <<<EOT
-// solved the conflict
 Quill.register("modules/htmlEditButton", htmlEditButton);
 
 // init last editor for adding
 var options = {$options},  
-    editorClass = 'quill-{$this->id}', 
-    editors = $('.' + editorClass),
-    lastEditor = editors.last(),
-    editorLength = editors.length,
-    editorMark = editorClass+editorLength; 
+    editorClass = 'quill-{$this->id}'; 
 
-// add a mark to the last editor
-lastEditor.addClass(editorMark);
-new Quill('.' + editorMark, options);
-
-// init editors that don't include the last one
 $('.' + editorClass).each(function(index, item) {
-    
-    if(index !== editorLength - 1) {
-        index++;
-        $(this).addClass(editorClass+index);
-        new Quill('.' + editorClass + index, options);
+    if( false === $(this).data('initialed') ) { // prevent initialed twice
+        new Quill(item, options);
+        $(this).data('initialed', true); // mark the editor as initialed
     }
+    
 });
 
 $('button[type="submit"]').click(function() {
-
+    var editorConent = '';
     $('.' + editorClass).each(function(index, item) {
-        var editorConent = item.children[0].innerHTML;
+        editorConent = item.children[0].innerHTML;
         $(this).siblings('input[type="hidden"]').val(editorConent);
     });
 

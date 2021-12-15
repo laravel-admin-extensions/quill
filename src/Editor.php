@@ -26,6 +26,7 @@ class Editor extends Field
         'vendor/laravel-admin-ext/quill/highlight.min.js',
         'vendor/laravel-admin-ext/quill/katex.min.js',
         'vendor/laravel-admin-ext/quill/quill.min.js',
+        'vendor/laravel-admin-ext/quill/quill.htmlEditButton.min.js',
     ];
 
     public function render()
@@ -36,7 +37,11 @@ class Editor extends Field
         $this->addVariables(['height' => $height]);
         unset($options['height']);
         $options = json_encode($options);
+
         $this->script = <<<EOT
+// solved the conflict
+Quill.register("modules/htmlEditButton", htmlEditButton);
+
 // init last editor for adding
 var options = {$options},  
     editorClass = 'quill-{$this->id}', 

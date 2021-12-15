@@ -51,6 +51,7 @@ In the `extensions` section of the `config/admin.php` file, add some configurati
                         'formula',
                         'clean'
                     ],
+                    "htmlEditButton" => ["syntax" => true, "debug" => true]
             ],
             'theme' => 'snow',
             'height' => '200px',
